@@ -5,7 +5,8 @@ var yosay = require('yosay');
 
 
 // 1. Welcome the user to the CLI program
-console.log(yosay("Welcome to NASA!\n1. ISS \n 2. Picture of the Day\n Choose a number to proceed.\n3. Random Asteroid Data."));
+
+console.log(yosay("Welcome to NASA!\n1. ISS \n2. Picture of the Day\n3. Asteroid Info \n Choose a number to proceed."));
 
 
 prompt.start();
@@ -28,15 +29,14 @@ prompt.get(['choice'], function (err, result) {
     })
   }
   if(result.choice == '3') {
-  console.log(yosay("Asteroid information!."))
-    request('https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=2ifGrri2F4HDQlsPeldjGOJuedJbkZRX4dgIt7OT', function (error, response, site) {
-      if (!error && response.statusCode == 200) {
-        var parsedSite = JSON.parse(site);
-        var asteroid = parsedSite.nasa_jpl_url;
-        open(asteroid);
-        }
-      })
 
+    request('https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=2ifGrri2F4HDQlsPeldjGOJuedJbkZRX4dgIt7OT', function (error, response, site) {
+    if (!error && response.statusCode == 200) {
+       var parsedSite = JSON.parse(site);
+       var url = parsedSite.nasa_jpl_url;
+       open(url);
+      }
+    })
   }
 });
 
